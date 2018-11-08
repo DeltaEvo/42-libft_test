@@ -1,0 +1,4 @@
+[submodule "Fuzzer"]
+	path = Fuzzer
+	url = https://chromium.googlesource.com/chromium/llvm-project/llvm/lib/Fuzzer
+	ignore = dirty
