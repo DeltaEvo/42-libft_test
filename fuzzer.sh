@@ -24,9 +24,12 @@ fuzz() {
 	local corpus=$current/${name}_crashs
 
 	echo -e "========> ${MAGENTA}${name}${RESET} <========"
+	clang -fsanitize-coverage=trace-pc-guard \
+		-I$libft -c tests/${name}.fuzz.c \
+		-o $tmp/test.o
 	clang++ -fsanitize-coverage=trace-pc-guard \
-		-I$libft -o ${tmp}/${name}fuzz \
-		Fuzzer/libFuzzer.a tests/${name}.fuzz.cc $libft/libft.a
+		$tmp/test.o Fuzzer/libFuzzer.a $libft/libft.a \
+		-o $tmp/${name}fuzz
 	pushd $tmp
 	mkdir -p $corpus
 	mkdir ${name}_corpus
