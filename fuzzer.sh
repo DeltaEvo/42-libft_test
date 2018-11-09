@@ -45,11 +45,15 @@ fuzz() {
 		if [[ $file != crash ]]; then
 			mv $file $current/${name}_crashs
 		fi
+		rm crash
 	else
 		echo -e "${GREEN}No Crash for ${MAGENTA}${name}${GREEN} ... good :)${RESET}"
 	fi
 	popd
+	sleep 2
 }
 
+fuzz ft_memcpy
+fuzz ft_memccpy
 fuzz ft_strchr
 rm -rf $tmp

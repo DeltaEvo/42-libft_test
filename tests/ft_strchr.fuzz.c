@@ -1,15 +1,12 @@
-#include <stdint.h>
-#include <stddef.h>
-#include <string.h>
+#include "test.h"
 
+#include <string.h>
 #include "libft.h"
 
-int LLVMFuzzerTestOneInput(const uint8_t *data, size_t size) {
-	if (size >= 1 && data[size - 1] == 0) {
-		char c = (char)data[0];
-		char *str = (char *)data + 1;
-		if (strchr(str, c) != ft_strchr(str, c))
-			__builtin_trap();
-	}
+TEST {
+	ASSERT(size >= 1 && data[size - 1] == 0);
+	char c = (char)data[0];
+	char *str = (char *)data + 1;
+	CRASH_IF(strchr(str, c) != ft_strchr(str, c));
 	return 0;
 }
