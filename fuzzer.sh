@@ -53,7 +53,7 @@ fuzz() {
 	sleep 2
 }
 
-fuzz ft_memcpy
 fuzz ft_memccpy
+fuzz ft_memcpy
 fuzz ft_strchr
 rm -rf $tmp
